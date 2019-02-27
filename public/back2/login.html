@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>乐淘电商</title>
+  <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="./lib/bootstrap-validator/css/bootstrapValidator.min.css">
+  <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
+  <link rel="stylesheet" href="./css/common.css">
+</head>
+
+<body class="body_bg">
+
+  <!-- 
+    xx-default  白色
+    xx-danger   红色
+    xx-success  绿色
+    xx-primary  深蓝色
+  -->
+
+  <div class="container">
+    <!-- 大屏中占4份, 其他屏幕撑满 -->
+    <div class="col-lg-4 col-lg-offset-4 mt_150">
+
+      <!-- 面板中放了表单 -->
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">后台管理系统</h3>
+        </div>
+        <div class="panel-body">
+          <form class="form-horizontal" id="form">
+            <!-- bootstrap中遵循一个规范, 每一行表单, 都用一个 form-group 包裹 -->
+            <div class="form-group">
+              <label for="username" class="col-sm-3 control-label">用户名:</label>
+              <div class="col-sm-9">
+                <input type="text" name="username" class="form-control" id="username" placeholder="请输入用户名">
+              </div>
+            </div>
+            <div class="form-group">
+              <!-- 全角空格进行占位对齐 -->
+              <label for="password" class="col-sm-3 control-label">密　码:</label>
+              <div class="col-sm-9">
+                <input type="password" name="password" class="form-control" id="password" placeholder="请输入密码">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-3 col-sm-6">
+                <button type="reset" class="btn btn-default pull-left">重置</button>
+                <button type="submit" class="btn btn-primary pull-right">登录</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <script src="./lib/jquery/jquery.js"></script>
+  <script src="./lib/bootstrap/js/bootstrap.js"></script>
+  <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+  <script src="./lib/nprogress/nprogress.js"></script>
+  <script src="./js/common.js"></script>
+  <script src="./js/login.js"></script>
+
+</body>
+
+</html>

@@ -1,6 +1,11 @@
-// 表单校验
 $(function () {
     $("#form").bootstrapValidator({
+        // 配置图标
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
         fields: {
             username: {
                 validators: {
@@ -10,7 +15,10 @@ $(function () {
                     stringLength: {
                         min: 2,
                         max: 6,
-                        message: "用户名必须在2到6位之间"
+                        message: "用户名长度为2~6位"
+                    },
+                    callback: {
+                        message: "用户名不存在"
                     }
                 }
             },
@@ -22,40 +30,45 @@ $(function () {
                     stringLength: {
                         min: 6,
                         max: 12,
-                        message: "密码必须在6到12之间"
+                        message: "密码长度为6~12位"
+                    },
+                    callback: {
+                        message: "密码错误"
                     }
                 }
             }
-        },
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
         }
     })
-})
 
-// 验证成功后点击登录按钮,会触发success.form.bv事件,此时表单会提交,这时候,通常我们需要禁止表单自动提交,使用ajax进行表单的校验
-$(function () {
+    // 阻止页面跳转,发送ajax提交
     $("#form").on("success.form.bv", function (e) {
         e.preventDefault();
+
         $.ajax({
             type: 'post',
             url: '/employee/employeeLogin',
             data: $("#form").serialize(),
             dataType: 'json',
             success: function (info) {
-                // console.log(info);
+                console.log(info);
                 if (info.error === 1000) {
-                    alert("用户名不存在");
+                    // alert("用户名不存在");
+                    $("#form").data("bootstrapValidator").updateStatus("username", "INVALID", "callback");
                 }
                 if (info.error === 1001) {
-                    alert("密码错误");
+                    // alert("密码错误");
+                    $("#form").data("bootstrapValidator").updateStatus("password", "INVALID", "callback");
                 }
                 if (info.success) {
-                    location.href = "index.html";
+                    location.href = "index.html"
                 }
+
             }
         })
+    })
+
+    // 重置表单
+    $("[type=reset]").on("click", function () {
+        $("#form").data("bootstrapValidator").resetForm();
     })
 })
